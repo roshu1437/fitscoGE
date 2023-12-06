@@ -1,0 +1,6 @@
+.cp{cursor: pointer;}
+.remove_number_appearance::-webkit-outer-spin-button,
+.remove_number_appearance::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
