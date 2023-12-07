@@ -1,4 +1,5 @@
 <?php 
+    include_once('common.php');
     // Common Variables
     $m_title = 'This is Home page';
 ?>
@@ -21,11 +22,11 @@
                         <h5 class="card-title">New laptop</h5>
                         <p class="d-flex justify-content-between">
                             <span>Price:<del>$400</del>-<strong>$200</strong></span>
-                            <span>Cat:<strong>Tech</strong></span>
+                            <span>Cat:<strong><a href="<?php echo $main_url; ?>category.php">Tech</a></strong></span>
                         </p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <p class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                            <a href="detail.php" class="btn btn-primary">Buy Now</a>
                             <strong class="text-success">In Stock</strong>
                             <!-- <strong class="text-danger">Out of Stock</strong> -->
                         </p>
@@ -39,11 +40,11 @@
                         <h5 class="card-title">New laptop</h5>
                         <p class="d-flex justify-content-between">
                             <span>Price:<del>$400</del>-<strong>$200</strong></span>
-                            <span>Cat:<strong>Tech</strong></span>
+                            <span>Cat:<strong><a href="<?php echo $main_url; ?>category.php">Tech</a></strong></span>
                         </p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <p class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                            <a href="<?php echo $main_url; ?>detail.php" class="btn btn-primary">Buy Now</a>
                             <strong class="text-success">In Stock</strong>
                             <!-- <strong class="text-danger">Out of Stock</strong> -->
                         </p>
@@ -57,11 +58,11 @@
                         <h5 class="card-title">New laptop</h5>
                         <p class="d-flex justify-content-between">
                             <span>Price:<del>$400</del>-<strong>$200</strong></span>
-                            <span>Cat:<strong>Tech</strong></span>
+                            <span>Cat:<strong><a href="<?php echo $main_url; ?>category.php">Tech</a></strong></span>
                         </p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <p class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                            <a href="<?php echo $main_url; ?>detail.php" class="btn btn-primary">Buy Now</a>
                             <strong class="text-success">In Stock</strong>
                             <!-- <strong class="text-danger">Out of Stock</strong> -->
                         </p>
@@ -75,11 +76,11 @@
                         <h5 class="card-title">New laptop</h5>
                         <p class="d-flex justify-content-between">
                             <span>Price:<del>$400</del>-<strong>$200</strong></span>
-                            <span>Cat:<strong>Tech</strong></span>
+                            <span>Cat:<strong><a href="<?php echo $main_url; ?>category.php">Tech</a></strong></span>
                         </p>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <p class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                            <a href="<?php echo $main_url; ?>detail.php" class="btn btn-primary">Buy Now</a>
                             <strong class="text-success">In Stock</strong>
                             <!-- <strong class="text-danger">Out of Stock</strong> -->
                         </p>
