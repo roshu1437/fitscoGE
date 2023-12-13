@@ -18,9 +18,20 @@
               <li><a class="dropdown-item" href="<?php echo $main_url; ?>category.php">Tech</a></li>
             </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo $main_url; ?>login.php">Login</a>
-        </li>
+        <?php if(isset($_SESSION['auth'])): ?>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="user-profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+            <ul class="dropdown-menu" style="width:200px;" aria-labelledby="user-profile">
+              <li><span class="dropdown-item-text">Welcome <?php echo $_SESSION['auth']['name']; ?></span></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="<?php echo $main_url; ?>actions/logout.php">Logout</a></li>
+            </ul>
+          </li>
+        <?php else: ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo $main_url; ?>login.php">Login</a>
+          </li>
+        <?php endif; ?>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
