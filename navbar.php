@@ -24,11 +24,12 @@
             <ul class="dropdown-menu" style="width:200px;" aria-labelledby="user-profile">
               <li><span class="dropdown-item-text">Welcome <?php echo $_SESSION['auth']['name']; ?></span></li>
               <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="<?php echo $main_url; ?>admin/profile-update.php">Profile Update</a></li>
               <li><a class="dropdown-item" href="<?php echo $main_url; ?>actions/logout.php">Logout</a></li>
             </ul>
           </li>
         <?php else: ?>
-          <li class="nav-item">
+          <li class="nav-item"> 
             <a class="nav-link" href="<?php echo $main_url; ?>login.php">Login</a>
           </li>
         <?php endif; ?>
