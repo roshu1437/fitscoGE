@@ -22,7 +22,7 @@
             </div>
             <div class="col-8" >
                 <h1>Product Add</h1>
-                <form class="row g-3">
+                <form class="row g-3" action="<?php echo $main_url; ?>actions/product-add.php" method="post" enctype="multipart/form-data">
                     <div class="col-md-4">
                         <label for="p_title" class="form-label">Product Title</label>
                         <input type="text" class="form-control" id="p_title" name="p_title">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="p_image" class="form-label">Product Images</label>
-                        <input class="form-control" type="file" id="p_image" multiple>
+                        <input class="form-control" type="file" id="p_image" multiple name="p_image[]">
                     </div>
                     <div class="col-md-2">
                         <label for="p_price" class="form-label">Product Price $</label>
@@ -83,17 +83,17 @@
                     </div>
                     <div class="col-12">
                         <label for="p_detail" class="form-label">Product Details</label>
-                        <textarea class="form-control" id="p_detail" rows="10" placeholder="write product detail here"></textarea>
+                        <textarea class="form-control" name="p_detail" id="p_detail" rows="10" placeholder="write product detail here"></textarea>
                         <p class="text-end">Total Words Limit: <strong>500</strong></p>
                     </div>
                     <div class="col-12">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="p_premium_note">
+                            <input class="form-check-input" type="checkbox" name="p_premium_note" id="p_premium_note">
                             <label class="form-check-label" for="p_premium_note">Is Product is Premium</label>
                         </div>
                     </div>
                     <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-primary">Sending For Approval</button>
+                        <button type="submit" class="btn btn-primary" name="send_approval">Sending For Approval</button>
                     </div>
                 </form>
             </div>

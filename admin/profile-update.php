@@ -6,7 +6,6 @@
     }
     // Common Variables
     $m_title = 'Update Profile Page';
-    //echo '<pre>';print_r($_SESSION['auth']);die();
 ?>
 <!DOCTYPE html>
 <html lang="en">
