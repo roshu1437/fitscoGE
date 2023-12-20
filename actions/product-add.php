@@ -78,7 +78,7 @@ if(isset($_POST['send_approval'])){
                     p_color='".$color_variations."',
                     p_detail='".$p_detail."',
                     p_premium='".$premium."',
-                    p_status='1',
+                    p_status='2',
                     p_created_at='".time()."'
                 ";
                 $qr = mysqli_query($con,$ins);
