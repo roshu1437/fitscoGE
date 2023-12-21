@@ -21,8 +21,8 @@
                 <?php require_once('sidebar.php'); ?>
             </div>
             <div class="col-8" >
-                <?php if($pending_products > 0): ?>
-                    <h1 class="text-center">Pending Product</h1>
+                <?php if($all_products > 0): ?>
+                    <h1 class="text-center">All Product</h1>
                     <table class="table">
                         <thead>
                             <tr>
@@ -36,7 +36,7 @@
                         <tbody>
                             <?php
                             $number = 0; 
-                            while($product_data = mysqli_fetch_assoc($pending_products_query)): 
+                            while($product_data = mysqli_fetch_assoc($all_products_query)): 
                                 $number++;
                             ?>
                                 <tr>
@@ -45,7 +45,7 @@
                                     <td><?=$product_data['p_url']?></td>
                                     <td><img src="<?=$main_url?>p-images/<?=json_decode($product_data['p_image'],true)[0]?>" height="30px"></td>
                                     <td>
-                                        <a href="<?=$main_url?>actions/product-auth.php?p-approved=<?=$product_data['id']?>" class="badge btn-primary text-decoration-none">Approved</a>
+                                        <a href="<?=$main_url?>actions/product-auth.php?un-approved=<?=$product_data['id']?>" class="badge btn-warning text-decoration-none">Unapproved</a>
                                         <a href="" class="badge btn-danger text-decoration-none">Reject</a>
                                     </td>
                                 </tr>
