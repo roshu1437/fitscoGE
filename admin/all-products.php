@@ -45,6 +45,7 @@
                                     <td><?=$product_data['p_url']?></td>
                                     <td><img src="<?=$main_url?>p-images/<?=json_decode($product_data['p_image'],true)[0]?>" height="30px"></td>
                                     <td>
+                                        <a href="<?=$main_url?>admin/product-update.php?update=<?=$product_data['id']?>" class="badge btn-info text-decoration-none">Update</a>
                                         <a href="<?=$main_url?>actions/product-auth.php?un-approved=<?=$product_data['id']?>" class="badge btn-warning text-decoration-none">Unapproved</a>
                                         <a href="" class="badge btn-danger text-decoration-none">Reject</a>
                                     </td>
