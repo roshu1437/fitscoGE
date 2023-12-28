@@ -63,7 +63,11 @@
                                     <td><?=$category_data['c_url']?></td>
                                     <td>
                                         <button class="courser-pointer badge bg-info border-0" data-bs-toggle="collapse" data-bs-target="#testingDiv<?=$number?>" aria-controls="testingDiv<?=$number?>" aria-expanded="false">Update</button>
-                                        <a href="" class="badge btn-danger text-decoration-none">Delete</a>
+                                        <?php if($category_data['c_status'] == 1): ?>
+                                            <a href="<?php echo $main_url; ?>actions/category-add.php?dell=<?=$category_data['id']?>" class="badge btn-danger text-decoration-none">Delete</a>
+                                        <?php else: ?>
+                                                <a href="<?php echo $main_url; ?>actions/category-add.php?recover=<?=$category_data['id']?>" class="badge btn-warning text-decoration-none">Recover</a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                                 <tr class="collapse navbar-collapse" id="testingDiv<?=$number?>">

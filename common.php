@@ -17,9 +17,14 @@ $all_products_query = mysqli_query($con, $q1);
 $all_products = mysqli_num_rows($all_products_query);
 
 // Get All Categories
-$q2 = 'Select * From categories where c_status="1"';
+$q2 = 'Select * From categories';
 $all_categories_query = mysqli_query($con, $q2);
 $all_categories = mysqli_num_rows($all_categories_query);
+
+// Get All Categories
+$q2 = 'Select * From categories where c_status="1"';
+$all_active_categories_query = mysqli_query($con, $q2);
+$all_active_categories = mysqli_num_rows($all_active_categories_query);
 
 
 ?>

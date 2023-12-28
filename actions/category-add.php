@@ -1,6 +1,6 @@
 <?php 
 require_once('../common.php');
-if(isset($_POST['add_category'])){
+if(isset($_POST['add_category'])){ // Add category
     if(!empty($_POST['c_title']) && !empty($_POST['c_url']) && !empty($_POST['c_description'])){
         $c_url = $_POST['c_url'];
         $q = 'SELECT c_url FROM categories WHERE c_url="'.$c_url.'"';
@@ -34,7 +34,7 @@ if(isset($_POST['add_category'])){
     }else{
         $error = 'Please fill all required fields';
     }
-}elseif(isset($_POST['update_category'])){
+}elseif(isset($_POST['update_category'])){  // Update category
     if(!empty($_POST['c_title']) && !empty($_POST['c_url']) && !empty($_POST['c_description'])){
         $c_url = $_POST['c_url'];
         $q = 'SELECT c_url FROM categories WHERE c_url="'.$c_url.'"';
@@ -64,6 +64,36 @@ if(isset($_POST['add_category'])){
             }
         }else{
             $error = 'Something is wrong please try again to update';
+        }
+    }else{
+        $error = 'Please fill all required fields';
+    }
+}elseif(isset($_GET['dell'])){  // Delete category
+    if(!empty($_GET['dell'])){
+        $c_id = $_GET['dell'];
+        // Update Query 
+        $ins = "UPDATE categories SET c_status='2' where id='".$c_id."'";
+        $qr = mysqli_query($con,$ins);
+        if($qr){
+            $_SESSION['success'] = 'Category Deleted Successfully';
+            header('Location: '.$main_url.'admin/add-category.php');
+        }else{
+            $error = 'Something is wrong please try again';
+        }
+    }else{
+        $error = 'Please fill all required fields';
+    }
+}elseif(isset($_GET['recover'])){ // Recover category
+    if(!empty($_GET['recover'])){
+        $c_id = $_GET['recover'];
+        // Update Query 
+        $ins = "UPDATE categories SET c_status='1' where id='".$c_id."'";
+        $qr = mysqli_query($con,$ins);
+        if($qr){
+            $_SESSION['success'] = 'Category Recover Successfully';
+            header('Location: '.$main_url.'admin/add-category.php');
+        }else{
+            $error = 'Something is wrong please try again';
         }
     }else{
         $error = 'Please fill all required fields';
