@@ -21,7 +21,7 @@ $q2 = 'Select * From categories';
 $all_categories_query = mysqli_query($con, $q2);
 $all_categories = mysqli_num_rows($all_categories_query);
 
-// Get All Categories
+// Get All Active Categories
 $q2 = 'Select * From categories where c_status="1"';
 $all_active_categories_query = mysqli_query($con, $q2);
 $all_active_categories = mysqli_num_rows($all_active_categories_query);
