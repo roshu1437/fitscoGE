@@ -27,4 +27,36 @@ $all_active_categories_query = mysqli_query($con, $q2);
 $all_active_categories = mysqli_num_rows($all_active_categories_query);
 
 
+function kabeer(){
+  echo 'This is first heading';
+  die;
+}
+// kabeer();
+
+function a1($t,$a){
+  echo $t;
+  // die;
+}
+
+
+function ed($v = 'z'){
+  echo '<pre>';
+  print_r($v);
+  die;
+}
+
+// ed($v);
+
+
+function p($v1,$v2){
+  // for ($i=0; $i < 10; $i++) { 
+  //   echo $i.'<br>';
+  // }
+  $a = $v1 + $v2; 
+  return $a;
+}
+
+echo p(3,5);
+die;
+
 ?>
