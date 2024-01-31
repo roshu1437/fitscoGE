@@ -19,21 +19,27 @@
                 <li><a class="dropdown-item" href="category.php">Tech</a></li>
               </ul>
           </li>
-          <?php if(isset($_SESSION['auth'])): ?>
+          @auth
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="user-profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
               <ul class="dropdown-menu" style="width:200px;" aria-labelledby="user-profile">
-                <li><span class="dropdown-item-text">Welcome <?php echo $_SESSION['auth']['name']; ?></span></li>
+                <li><span class="dropdown-item-text">Welcome </span></li>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="admin/profile-update.php">Profile Update</a></li>
-                <li><a class="dropdown-item" href="actions/logout.php">Logout</a></li>
+                <li>
+                  <a class="dropdown-item" onclick="$('#logout_form').submit()">Logout</a>
+                  <form action="{{route('logout')}}" method="post" id="logout_form">
+                    @csrf
+                  </form>
+                </li>
               </ul>
             </li>
-          <?php else: ?>
+          @endauth
+          @guest
             <li class="nav-item"> 
-              <a class="nav-link" href="login.php">Login</a>
-            </li>
-          <?php endif; ?>
+              <a class="nav-link" href="{{route('login')}}">Login</a>
+            </li>   
+          @endguest
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
