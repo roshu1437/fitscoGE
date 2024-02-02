@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[App\Http\Controllers\MainController::class,'index'])->name('home');
 
+Route::match(['get','post'],'word-changer',[App\Http\Controllers\MainController::class,'WordChanger'])->name('WordChanger');
+
 
 
 // Route::get('abc',[App\Http\Controllers\TestController::class,'xyz']);
@@ -22,9 +24,11 @@ Route::get('/',[App\Http\Controllers\MainController::class,'index'])->name('home
 
 // For Admin
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
     Route::get('/',[App\Http\Controllers\AdminController::class,'index'])->name('admin');
-    Route::get('add-product',[App\Http\Controllers\AdminController::class,'addProduct'])->name('addProduct');
+    // Route::get('add-product',[App\Http\Controllers\AdminController::class,'addProduct'])->name('addProduct');
+    // Route::post('add-product',[App\Http\Controllers\AdminController::class,'addProduct'])->name('addProduct');
+    Route::match(['get','post'],'add-product',[App\Http\Controllers\AdminController::class,'addProduct'])->name('addProduct');
 });
 
 

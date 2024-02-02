@@ -23,7 +23,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="user-profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
               <ul class="dropdown-menu" style="width:200px;" aria-labelledby="user-profile">
-                <li><span class="dropdown-item-text">Welcome </span></li>
+                <li><span class="dropdown-item-text">Welcome {{auth()->user()->name}}</span></li>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="admin/profile-update.php">Profile Update</a></li>
                 <li>

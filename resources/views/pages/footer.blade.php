@@ -1,21 +1,15 @@
-
-
-<!-- for Error messages -->
-<?php if(isset($_SESSION['error'])): ?>
+{{--  for Error messages  --}}
+@if ($errors->any())
     <div class="toast-container position-absolute top-0 end-0 p-3">
         <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" id="error_toast">
             <div class="toast-header bg-danger text-light">
-                <!-- <img src="..." class="rounded me-2" alt="..."> -->
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                 <strong class="me-auto">Error</strong>
                 <small>Just Now</small>
                 <button type="button" class="btn-close bg-light" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                <?php 
-                    echo $_SESSION['error']; 
-                    unset($_SESSION['error']);
-                ?>
+                {{$errors->all()[0]}}
             </div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -37,7 +31,7 @@
             error_toast.show();
         })
     </script>
-<?php endif; ?>
+@endif
 <!-- for success messages -->
 <?php if(isset($_SESSION['success'])): ?>
     <div class="toast-container position-absolute top-0 end-0 p-3">

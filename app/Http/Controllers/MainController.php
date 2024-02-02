@@ -9,6 +9,5 @@ class MainController extends Controller{
         $v= array();
         $v['title']= 'This is Home page';
         return view('pages.home',$v);
-        // return view('main',$v);
     }
 }
