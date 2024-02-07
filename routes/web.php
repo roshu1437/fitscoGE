@@ -29,6 +29,13 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
     // Route::get('add-product',[App\Http\Controllers\AdminController::class,'addProduct'])->name('addProduct');
     // Route::post('add-product',[App\Http\Controllers\AdminController::class,'addProduct'])->name('addProduct');
     Route::match(['get','post'],'add-product',[App\Http\Controllers\AdminController::class,'addProduct'])->name('addProduct');
+    Route::get('all-products',[App\Http\Controllers\AdminController::class,'allProducts'])->name('allProducts');
+    Route::get('all-pending-products',[App\Http\Controllers\AdminController::class,'allPendingProducts'])->name('allPendingProducts');
+    Route::match(['get','post'],'product-approved/{any}',[App\Http\Controllers\AdminController::class,'approvedProduct'])->name('approvedProduct');
+    Route::match(['get','post'],'product-unapproved/{any}',[App\Http\Controllers\AdminController::class,'unapprovedProduct'])->name('unapprovedProduct');
+
+    //After 
+    Route::match(['get','post'],'update-product/{any}',[App\Http\Controllers\AdminController::class,'addProduct'])->name('updateProduct');
 });
 
 

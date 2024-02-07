@@ -10,7 +10,33 @@ class AdminController extends Controller{
     public function index(){
         $v= array();
         $v['title']= 'This is Admin Home page';
+        $v['all_pending']= Product::where('p_status',2)->count();
+        $v['all_products']= Product::where('p_status',1)->count();
         return view('admin.index',$v);
+    }
+    public function allProducts(){
+        $v= array();
+        $v['title']= 'This is All Products page';
+        $v['all_pending']= Product::where('p_status',2)->count();
+        $v['all_products']= Product::where('p_status',1)->count();
+        $v['all_products_results']= Product::where('p_status',1)->get()->toArray();
+        return view('admin.allProducts',$v);
+    }
+    public function allPendingProducts(){
+        $v= array();
+        $v['title']= 'This is All Pending Products page';
+        $v['all_pending']= Product::where('p_status',2)->count();
+        $v['all_products']= Product::where('p_status',1)->count();
+        $v['all_products_results']= Product::where('p_status',2)->get()->toArray();
+        return view('admin.allPendingProducts',$v);
+    }
+    public function approvedProduct($post_id){
+        Product::where('id',$post_id)->update(['p_status'=>1]);
+        return redirect()->back()->with(['success'=>'Post Approved Successfully']);
+    }
+    public function unapprovedProduct($post_id){
+        Product::where('id',$post_id)->update(['p_status'=>2]);
+        return redirect()->back()->with(['success'=>'Post Unapproved Successfully']);
     }
     // dependency injection
     public function addProduct(Request $request){
