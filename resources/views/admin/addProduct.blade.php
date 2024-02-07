@@ -12,15 +12,15 @@
         @csrf
         <div class="col-md-4">
             <label for="p_title" class="form-label">Product Title</label>
-            <input type="text" class="form-control" id="p_title" name="p_title">
+            <input type="text" class="form-control" id="p_title" name="p_title" value="{{old('p_title')}}">
         </div>
         <div class="col-md-4">
             <label for="p_url" class="form-label">Product URL</label>
-            <input type="text" class="form-control" id="p_url" name="p_url">
+            <input type="text" class="form-control" id="p_url" name="p_url" value="{{old('p_url')}}">
         </div>
         <div class="col-md-4">
             <label for="p_description" class="form-label">Product Description</label>
-            <input type="text" class="form-control" id="p_description" name="p_description">
+            <input type="text" class="form-control" id="p_description" name="p_description" value="{{old('p_description')}}">
         </div>
         <div class="col-md-6">
             <label for="p_image" class="form-label">Product Images</label>
@@ -28,15 +28,15 @@
         </div>
         <div class="col-md-2">
             <label for="p_price" class="form-label">Product Price $</label>
-            <input type="number" class="form-control" id="p_price" name="p_price">
+            <input type="number" class="form-control" id="p_price" name="p_price" value="{{old('p_price')}}">
         </div>
         <div class="col-md-2">
             <label for="p_discount" class="form-label">Price Discount %</label>
-            <input type="number" class="form-control" id="p_discount" name="p_discount">
+            <input type="number" class="form-control" id="p_discount" name="p_discount" value="{{old('p_discount')}}">
         </div>
         <div class="col-md-2">
             <label for="p_quantity" class="form-label">Product Quantity</label>
-            <input type="number" class="form-control" id="p_quantity" name="p_quantity">
+            <input type="number" class="form-control" id="p_quantity" name="p_quantity" value="{{old('p_quantity')}}">
         </div>
         <div class="col-md-6">
             <label class="form-label">Product Sizes: </label>
@@ -70,7 +70,7 @@
         </div>
         <div class="col-12">
             <label for="p_detail" class="form-label">Product Details</label>
-            <textarea class="form-control" name="p_detail" id="p_detail" rows="10" placeholder="write product detail here"></textarea>
+            <textarea class="form-control" name="p_detail" id="p_detail" rows="10" placeholder="write product detail here">{{old('p_detail')}}</textarea>
             <p class="text-end">Total Words Limit: <strong>500</strong></p>
         </div>
         <div class="col-12">

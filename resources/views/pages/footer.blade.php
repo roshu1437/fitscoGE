@@ -33,7 +33,7 @@
     </script>
 @endif
 <!-- for success messages -->
-<?php if(isset($_SESSION['success'])): ?>
+<?php if(session()->has('success')): ?>
     <div class="toast-container position-absolute top-0 end-0 p-3">
         <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" id="success_toast">
             <div class="toast-header bg-success text-light">
@@ -42,12 +42,7 @@
                 <small>Just Now</small>
                 <button type="button" class="btn-close bg-light" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <div class="toast-body">
-                <?php 
-                    echo $_SESSION['success']; 
-                    unset($_SESSION['success']);
-                ?>
-            </div>
+            <div class="toast-body">{{session()->get('success')}}</div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
             <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">

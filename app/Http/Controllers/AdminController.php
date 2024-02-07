@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class AdminController extends Controller{
     public function index(){
@@ -14,6 +15,8 @@ class AdminController extends Controller{
     // dependency injection
     public function addProduct(Request $request){
 
+        // $v=Product::get();
+        // dd($v);
         if($request->method() == 'POST'){
             // if(!empty($_POST['p_title'])){
             //     echo '<pre>';print_r('test');die();
@@ -27,13 +30,21 @@ class AdminController extends Controller{
             //     echo '<pre>';print_r('empty');die();
             // }
 
-            $request->validate([
-                'p_title'=>'required',
-                'p_url'=>'required',
-                'p_price'=>'required',
-                'p_quantity'=>'required',
-                'p_detail'=>'required',
-            ]);
+
+            $request->validate(
+                [
+                    'p_title'=>'required',
+                    'p_url'=>'required|unique:products',
+                    'p_price'=>'required',
+                    'p_quantity'=>'required',
+                    'p_detail'=>'required',
+                    'p_image.*'=>'required|max:5000|mimes:jpg,png',
+                ],
+                [
+                    'p_url.required' => 'Please enter a product URL',
+                    'p_url.unique' => 'This Product url already exist',
+                ]
+            );
 
             // for sizes variations store start
             $size_variations = array();
@@ -64,12 +75,39 @@ class AdminController extends Controller{
             $color_variations = json_encode($color_variations);
             // for color variations store end
 
-            $ins = DB::table('products')->insert([
+            // for images
+            $images = $request->file('p_image');
+            $images_names=array();
+            foreach($images as $k => $v) {
+                // $_FILES['p_image'][$k]['size']
+                $size = $v->getSize();
+                $name = time().'-'.$k.'-'.$v->getClientOriginalName();
+                if($v->move('p-images', $name)){
+                    $images_names[] = $name;
+                }
+            }
+            $images_names = json_encode($images_names);
+            // $ins = DB::table('products')->insert([
+            //     'author_id'=>auth()->user()->id,
+            //     'p_title'=>$request->p_title,
+            //     'p_url'=>$request->p_url,
+            //     'p_description'=>$request->p_description,
+            //     'p_image'=>$images_names,
+            //     'p_price'=>$request->p_price,
+            //     'p_discount'=>$request->p_discount,
+            //     'p_quantity'=>$request->p_quantity,
+            //     'p_size'=>$size_variations,
+            //     'p_color'=>$color_variations,
+            //     'p_detail'=>$request->p_detail,
+            //     'p_premium'=>$request->p_premium_note?1:0,
+            //     'p_status'=>'2'
+            // ]);
+            $ins = Product::insert([
                 'author_id'=>auth()->user()->id,
                 'p_title'=>$request->p_title,
                 'p_url'=>$request->p_url,
                 'p_description'=>$request->p_description,
-                'p_image'=>'s',
+                'p_image'=>$images_names,
                 'p_price'=>$request->p_price,
                 'p_discount'=>$request->p_discount,
                 'p_quantity'=>$request->p_quantity,
@@ -79,15 +117,17 @@ class AdminController extends Controller{
                 'p_premium'=>$request->p_premium_note?1:0,
                 'p_status'=>'2'
             ]);
+
             if($ins){
-                return redirect()->back()->withErrors(['Post Added']);
+                return redirect()->back()->with(['success'=>'Post Added']);
             }else{
                 return redirect()->back()->withErrors(['something went wrong']);
             }
-
         }
         $v = array();
         $v['title']= 'This is add Product page';
+        $v['all_pending']= Product::where('p_status',2)->count();
+        $v['all_products']= Product::where('p_status',1)->count();
         return view('admin.addProduct',$v);
     }
 }
