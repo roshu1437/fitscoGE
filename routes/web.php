@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
     Route::match(['get','post'],'product-unapproved/{any}',[App\Http\Controllers\AdminController::class,'unapprovedProduct'])->name('unapprovedProduct');
 
     //After 
-    Route::match(['get','post'],'update-product/{any}',[App\Http\Controllers\AdminController::class,'addProduct'])->name('updateProduct');
+    Route::match(['get','post'],'update-product/{any}',[App\Http\Controllers\AdminController::class,'updateProduct'])->name('updateProduct');
 });
 
 
