@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Models\Categories;
 
 class AdminController extends Controller{
     public function index(){
@@ -245,5 +246,48 @@ class AdminController extends Controller{
         $v['all_pending']= Product::where('p_status',2)->count();
         $v['all_products']= Product::where('p_status',1)->count();
         return view('admin.updateProduct',$v);
+    }
+    public function allCategories(Request $request){
+        $v = array();
+        $v['title']= 'This is All Categories page';
+        $v['all_pending']= Product::where('p_status',2)->count();
+        $v['all_products']= Product::where('p_status',1)->count();
+        $v['all_categories']= Categories::orderBy('id', 'DESC')->get()->toArray();
+        return view('admin.allCategories',$v);
+    }
+    public function addCategory(Request $request){
+        if($request->method() == 'POST'){
+            $request->validate(
+                [
+                    'c_title'=>'required',
+                    'c_url'=>'required|unique:categories',
+                ],
+                [
+                    'c_url.required' => 'Please enter a product URL',
+                    'c_url.unique' => 'This Product url already exist',
+                ]
+            );
+            $ins = Categories::insert([
+                'c_title'=>$request->c_title,
+                'c_url'=>$request->c_url,
+                'c_description'=>$request->c_description
+            ]);
+
+            if($ins){
+                return redirect()->back()->with(['success'=>'Category Added']);
+            }else{
+                return redirect()->back()->withErrors(['something went wrong']);
+            }
+        }
+        $v = array();
+        $v['title']= 'This is add Category page';
+        $v['all_pending']= Product::where('p_status',2)->count();
+        $v['all_products']= Product::where('p_status',1)->count();
+        return view('admin.addCategory',$v);
+    }
+    public function deleteCategory($category_id){
+        Categories::where('id',$category_id)->delete();
+        // Categories::where('id',$category_id)->restore();
+        return redirect()->back()->with(['success'=>'Category Deleted Successfully']);        
     }
 }
