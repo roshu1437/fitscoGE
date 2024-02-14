@@ -20,7 +20,7 @@
                         <td>1</td>
                         <td>{{$product['p_title']}}</td>
                         <td>{{$product['p_url']}}</td>
-                        <td><img src="{{asset('p-images/').json_decode($product['p_image'],true)[0]}}" height="30px"></td>
+                        <td><img src="{{asset('p-images').'/'.json_decode($product['p_image'],true)[0]}}" height="30px"></td>
                         <td>
                             <a href="{{route('updateProduct',$product['id'])}}" class="badge btn-info text-decoration-none">Update</a>
                             <a href="{{route('approvedProduct',$product['id'])}}" class="badge btn-primary text-decoration-none">Approved</a>

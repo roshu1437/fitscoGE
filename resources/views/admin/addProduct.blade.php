@@ -22,9 +22,17 @@
             <label for="p_description" class="form-label">Product Description</label>
             <input type="text" class="form-control" id="p_description" name="p_description" value="{{old('p_description')}}">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="p_image" class="form-label">Product Images</label>
             <input class="form-control" type="file" id="p_image" multiple name="p_image[]">
+        </div>
+        <div class="col-md-2">
+            <label for="p_cat" class="form-label">Select Product Category</label>
+            <select name="p_cat" id="p_cat" class="form-control">
+                @foreach ($all_categories as $category)
+                    <option value="{{$category['id']}}">{{$category['c_title']}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="col-md-2">
             <label for="p_price" class="form-label">Product Price $</label>

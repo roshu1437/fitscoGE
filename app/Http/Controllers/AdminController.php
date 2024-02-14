@@ -41,23 +41,7 @@ class AdminController extends Controller{
     }
     // dependency injection
     public function addProduct(Request $request){
-
-        // $v=Product::get();
-        // dd($v);
         if($request->method() == 'POST'){
-            // if(!empty($_POST['p_title'])){
-            //     echo '<pre>';print_r('test');die();
-            // }else{
-            //     echo '<pre>';print_r('empoty');die();
-            // }
-            // if(!empty($request->p_title)){
-            // if(!empty($request->post('p_title'))){
-            //     echo '<pre>';print_r('test');die();
-            // }else{
-            //     echo '<pre>';print_r('empty');die();
-            // }
-
-
             $request->validate(
                 [
                     'p_title'=>'required',
@@ -114,23 +98,9 @@ class AdminController extends Controller{
                 }
             }
             $images_names = json_encode($images_names);
-            // $ins = DB::table('products')->insert([
-            //     'author_id'=>auth()->user()->id,
-            //     'p_title'=>$request->p_title,
-            //     'p_url'=>$request->p_url,
-            //     'p_description'=>$request->p_description,
-            //     'p_image'=>$images_names,
-            //     'p_price'=>$request->p_price,
-            //     'p_discount'=>$request->p_discount,
-            //     'p_quantity'=>$request->p_quantity,
-            //     'p_size'=>$size_variations,
-            //     'p_color'=>$color_variations,
-            //     'p_detail'=>$request->p_detail,
-            //     'p_premium'=>$request->p_premium_note?1:0,
-            //     'p_status'=>'2'
-            // ]);
             $ins = Product::insert([
                 'author_id'=>auth()->user()->id,
+                'cat_id'=>$request->p_cat,
                 'p_title'=>$request->p_title,
                 'p_url'=>$request->p_url,
                 'p_description'=>$request->p_description,
@@ -155,6 +125,7 @@ class AdminController extends Controller{
         $v['title']= 'This is add Product page';
         $v['all_pending']= Product::where('p_status',2)->count();
         $v['all_products']= Product::where('p_status',1)->count();
+        $v['all_categories']= Categories::select('id','c_title')->orderBy('id', 'DESC')->get()->toArray();
         return view('admin.addProduct',$v);
     }
     public function updateProduct($post_id,Request $request){
