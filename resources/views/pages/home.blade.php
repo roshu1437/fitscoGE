@@ -7,6 +7,8 @@
             }
             .card-img-top{max-height:200px;min-height:200px}
             .card{max-height:400px}
+            .w-5{width:4em}
+            .h-5{height:4em}
         </style>
     @endpush
     <div class="row mx-0">
@@ -40,5 +42,8 @@
                 </div>
             </div>
         @endforeach
+        <div class="d-felx justify-content-center">
+            {!!$all_products_results->links()!!}
+        </div>
     </div>
 @endsection
