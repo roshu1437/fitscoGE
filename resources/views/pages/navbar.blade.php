@@ -1,4 +1,21 @@
 
+<style>
+  .search_box{
+    position: absolute;
+    top: 46px;
+    background: #eee;
+    width: 208px;
+    padding: 10px;
+    display: none;
+  }
+  .search_box a{
+    display: block;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Your Site Name</a>
@@ -42,8 +59,9 @@
           @endguest
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="search" id="search_inp" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="button" id="start_search">Search</button>
+          <div class="search_box"></div>
         </form>
       </div>
     </div>

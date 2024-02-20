@@ -64,5 +64,3 @@
         })
     </script>
 <?php endif; ?>
-
-{{-- https://tawk.to/ --}}

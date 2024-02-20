@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[App\Http\Controllers\MainController::class,'index'])->name('home');
 
-Route::match(['get','post'],'word-changer',[App\Http\Controllers\MainController::class,'WordChanger'])->name('WordChanger');
+Route::get('search',[App\Http\Controllers\MainController::class,'search'])->name('search');
 
 
 

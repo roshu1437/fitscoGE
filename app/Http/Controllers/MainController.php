@@ -13,4 +13,11 @@ class MainController extends Controller{
         // dd($v['all_products_results']);
         return view('pages.home',$v);
     }
+    public function search(Request $request){
+        if($request->method() == 'GET'){
+            $search = $request->v;
+            $data = Product::select('p_title')->Live()->where('p_title', 'like', "%$search%")->get()->toArray();
+            return response()->json($data);
+        }
+    }
 }
